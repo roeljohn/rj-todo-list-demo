@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { settings } from './../settings';
 import axios from 'axios';
 
 class Home extends Component {
@@ -33,6 +34,7 @@ class Home extends Component {
             //     }
             // ]
             modal: false,
+            dropdown: false,
             id: '',
             todoId: '', 
             title: '',
@@ -80,17 +82,30 @@ class Home extends Component {
                 archived: archived,
                 dueDate:dueDate,
             }); 
+
             // this.setState({ todos: newArray });
             this.setState(
                 (state, props) => {
-                  return { todos: newArray };
+                  return { 
+                      todos: newArray
+                };
             });
             // this.setState({
             //     todos: response.newArray
             // })
             
         //   this.setState({ todos: response.data });
-        console.log(this.state.todos)
+        let newNotification = Object.assign([], settings.notification);
+        newNotification.push({
+            id:`${todoId}`,
+            userId: userId,
+            title: title,
+            completed: true,
+            archived: archived,
+            dueDate:dueDate,
+        }); 
+        settings.notification = newNotification;
+        console.log(settings.notification.length)
         })
         .catch(error => {
         console.log(error);
@@ -193,11 +208,12 @@ class Home extends Component {
               return { modal: !this.state.modal };
         });
     }
+
     render() {
         return (
-            <div className={'row'}>
+            <div className={'row todo-page'}>
                     <div class="col-md-4">
-                        <h3>Todo's</h3>
+                        <h3>Todo's </h3>
                         <div class="card mb-4 shadow-sm border-info">
                             <ul class="list-group">
                                 {this.state.todos.map((todo, id) => {

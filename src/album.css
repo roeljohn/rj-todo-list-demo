@@ -106,3 +106,6 @@ input[type=checkbox]
       -ms-transition: opacity 2s ease-in;
       transition: opacity 2s ease-in;
 }
+.todo-page h3{
+  text-align:left;
+}
