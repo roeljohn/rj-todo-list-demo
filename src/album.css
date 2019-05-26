@@ -1,0 +1,108 @@
+.jumbotron {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  margin-bottom: 0;
+  background-color: #fff;
+}
+@media (min-width: 768px) {
+  .jumbotron {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+.jumbotron p:last-child {
+  margin-bottom: 0;
+}
+
+.jumbotron-heading {
+  font-weight: 300;
+}
+
+.jumbotron .container {
+  max-width: 40rem;
+}
+
+footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+footer p {
+  margin-bottom: .25rem;
+}
+@media (min-width: 1200px){
+  .container {
+      max-width: 1500px;
+  }
+}
+.todo-edit-btn button{
+  color:#000;
+  background:none;
+  border:none;
+}
+.todo-edit-btn button:hover{
+  background:none;
+}
+.todo-edit-btn .btn-archive{
+  color: #ffc107;
+}
+.btn-unarchive{
+  padding: 0px;
+  border: none;
+  background: none;
+  margin: 5px 0px;
+  color: #007bff;
+}
+.btn-unarchive:hover{
+  background: none;
+  color: #007bff;
+}
+.todo-edit-btn .btn-edit{
+  color: #17a2b8;
+}
+.todo-edit-btn .btn-edit:disabled{
+  color: #17a2b8;
+  background:none;
+}
+.todo-text p{
+  float:left;
+  margin: 5px auto;
+  text-align: left;
+}
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  padding: 10px;
+  margin: 10px auto;
+}
+.btn-delete-forever i{
+  color: #dc3545;
+}
+.archive .todo-text p {
+  float: left;
+  margin: 5px auto;
+  text-align: left;
+  text-decoration: line-through;
+}
+.modal label{
+  float:left;
+  font-weight: bold;
+}
+.modal input{
+  margin-bottom:5px;
+}
+.fade{
+      background-color: black;
+      background-color: rgba(0, 0, 0, 0.61);
+      left: 0;
+      -webkit-transition: opacity 2s ease-in;
+      -moz-transition: opacity 2s ease-in;
+      -o-transition: opacity 2s ease-in;
+      -ms-transition: opacity 2s ease-in;
+      transition: opacity 2s ease-in;
+}
