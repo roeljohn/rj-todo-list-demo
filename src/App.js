@@ -4,6 +4,7 @@ import { Home } from './pages'
 import { Header, Footer } from './templates'
 import './App.css';
 import './album.css'
+import "react-datepicker/dist/react-datepicker.css";
 
 function App() {
   return (

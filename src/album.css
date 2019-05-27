@@ -1,3 +1,6 @@
+.navbar>.container, .navbar>.container-fluid {
+  justify-content: unset;
+}
 .jumbotron {
   padding-top: 3rem;
   padding-bottom: 3rem;
@@ -52,7 +55,7 @@ footer p {
   border: none;
   background: none;
   margin: 5px 0px;
-  color: #007bff;
+  color: #28a745;
 }
 .btn-unarchive:hover{
   background: none;
@@ -108,4 +111,24 @@ input[type=checkbox]
 }
 .todo-page h3{
   text-align:left;
+}
+.modal .input-group-append {
+  /* margin-left: -1px; */
+  width: 100%;
+  border-radius: 5px;
+  border: solid 1px #ced4da;
+  height: 40px;
+}
+.modal .input-group-text{
+  border:none;
+}
+.modal .react-datepicker-wrapper {
+  width: 100%;
+}
+.modal .react-datepicker-wrapper input{
+  border:none;
+  margin-bottom:0px;
+}
+.modal .react-datepicker__input-container {
+  width: 100%;
 }
