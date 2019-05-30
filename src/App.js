@@ -27,7 +27,8 @@ function App() {
 
   <div className="album py-5 bg-light">
     <div className="container">
-        <Route path="/" exact component={() => <Home />} />
+    <Route exact path={`/`} render={ (routerProps) => < Home routerProps={routerProps} />} />
+        {/* <Route path="/" exact component={() => <Home />} /> */}
     </div>
   </div>
 
