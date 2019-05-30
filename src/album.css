@@ -1,6 +1,10 @@
 .navbar>.container, .navbar>.container-fluid {
   justify-content: unset;
 }
+.navbar-brand{
+  color: #fff;
+  font-weight: bold;
+}
 .jumbotron {
   padding-top: 3rem;
   padding-bottom: 3rem;
@@ -39,6 +43,9 @@ footer p {
       max-width: 1500px;
   }
 }
+.todo-jumbotron button{
+  margin:10px;
+}
 .todo-edit-btn button{
   color:#000;
   background:none;
@@ -49,6 +56,20 @@ footer p {
 }
 .todo-edit-btn .btn-archive{
   color: #ffc107;
+}
+.btn-notification{
+  padding: 0px;
+}
+.btn-notification i{
+  font-size: 25px;
+}
+.btn-notification .badge{
+  position: relative;
+  top: -15px;
+  left: -13px;
+  background: red;
+  color: #fff;
+  text-align: center;
 }
 .btn-unarchive{
   padding: 0px;
@@ -95,6 +116,11 @@ input[type=checkbox]
 .modal label{
   float:left;
   font-weight: bold;
+}
+.modal-delete i{
+  font-size: 60px;
+  color: #dc3545;
+  margin-bottom: 20px;
 }
 .modal input{
   margin-bottom:5px;

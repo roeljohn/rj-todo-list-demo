@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Home } from './pages'
 import { Header, Footer } from './templates'
 import './App.css';
@@ -12,19 +12,21 @@ function App() {
 <Header/>
 <main role="main">
 
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1 class="jumbotron-heading">Todo List Demo</h1>
-      <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+  <section className="jumbotron text-center todo-jumbotron">
+    <div className="container">
+      <h1 className="jumbotron-heading">Todo Demo</h1>
+      <p className="lead text-muted">This demo is just portfolio purpose only. I'm not intend to sell this react app. This todo app can do basic todo's function.</p>
+      <p className="lead text-muted">Notes: This todo react app is not yet responsive. I have a plan but don't have a time yet. There are some features
+      too that not yet available like the notification and even the alert message. </p>
       <p>
-        <a href="#" class="btn btn-primary my-2">Github</a>
-        <a href="#" class="btn btn-secondary my-2">Documentation</a>
+        <a href="/" className="btn btn-primary m-2">Github</a>
+        <a href="/" className="btn btn-secondary m-2">Documentation</a>
       </p>
     </div>
   </section>
 
-  <div class="album py-5 bg-light">
-    <div class="container">
+  <div className="album py-5 bg-light">
+    <div className="container">
       <Router>
         <Route path="/" exact component={() => <Home />} />
       </Router>
