@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f5efb83685f2c46e77240307cebdc5d2",
+    "revision": "ae423a92668ca8714ee3a9e0e3ca25b7",
     "url": "/rj-todo-list-demo/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/rj-todo-list-demo/static/css/2.c7bb94bc.chunk.css"
   },
   {
-    "revision": "0c02e43af9e276823cea",
+    "revision": "c28d14d5598cf1dfb73e",
     "url": "/rj-todo-list-demo/static/css/main.703ef01e.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/rj-todo-list-demo/static/js/2.55f8e796.chunk.js"
   },
   {
-    "revision": "0c02e43af9e276823cea",
-    "url": "/rj-todo-list-demo/static/js/main.783ca271.chunk.js"
+    "revision": "c28d14d5598cf1dfb73e",
+    "url": "/rj-todo-list-demo/static/js/main.17322712.chunk.js"
   },
   {
     "revision": "4144855e19bb087e3984",
