@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { Home } from './pages'
 import { Header, Footer } from './templates'
 import './App.css';
@@ -27,9 +27,7 @@ function App() {
 
   <div className="album py-5 bg-light">
     <div className="container">
-      <Router>
         <Route path="/" exact component={() => <Home />} />
-      </Router>
     </div>
   </div>
 
