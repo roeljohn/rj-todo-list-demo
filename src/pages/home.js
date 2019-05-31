@@ -452,7 +452,10 @@ class Home extends Component {
                                   return { title: '' };
                             })
                         }} type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button onClick={this.onEdit.bind(this)}  type="button" className="btn btn-primary">Save changes</button>
+                            <button onClick={() => {
+                                this.onEdit()
+                                this.onShowModal()
+                            }}type="button" className="btn btn-primary">Save changes</button>
                         </div>
                         </div>
                     </div>
