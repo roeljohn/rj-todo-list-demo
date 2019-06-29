@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-export default function GetTodosApi(callback) {
-    axios.get('https://5cea41c50c871100140bf437.mockapi.io/api/v1/todos')
+export default function IncompleteTodoApi(todoId, callback) {
+    axios.put(`https://5cea41c50c871100140bf437.mockapi.io/api/v1/todos/${todoId}`, {
+        completed: false
+      })
     .then((res) => {
       if (res.status === 200) {
         callback({ data: res.data })
@@ -11,6 +13,5 @@ export default function GetTodosApi(callback) {
     })
       .catch(error => {
       	callback({ error: error })
-      });
-
+    });
 }
