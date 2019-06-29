@@ -3,6 +3,7 @@ import { settings } from './../settings';
 import DateBadge from './../components/dateBadge'
 import Datepicker from 'react-datepicker'
 import moment from 'moment'
+import GetTodosApi from '../api/GetTodosApi'
 import axios from 'axios';
 
 class Home extends Component {
@@ -27,6 +28,19 @@ class Home extends Component {
 
     componentDidMount(){
         this.getTodos();
+        this.loadGetTodos();
+    }
+    loadGetTodos() {
+        GetTodosApi('1212313', '12313', result => {
+          const { data, error } = result;
+          if (error) {
+            // Handle error
+            console.log('error')
+          }
+          if (data) {
+              console.table('table', data)
+          }
+      });
     }
     getTodos() {
           axios.get('https://5cea41c50c871100140bf437.mockapi.io/api/v1/todos')
