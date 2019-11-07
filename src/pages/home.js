@@ -3,6 +3,9 @@ import { settings } from './../settings';
 import DateBadge from './../components/dateBadge'
 import Datepicker from 'react-datepicker'
 import moment from 'moment'
+import GetTodosApi from '../api/GetTodosApi'
+import CompleteTodoApi from '../api/CompleteTodoApi'
+import IncompleteTodoApi from '../api/IncompleteTodoApi'
 import axios from 'axios';
 
 class Home extends Component {
@@ -26,20 +29,36 @@ class Home extends Component {
     }
 
     componentDidMount(){
+        // this.getTodos();
         this.getTodos();
     }
     getTodos() {
-          axios.get('https://5cea41c50c871100140bf437.mockapi.io/api/v1/todos')
-          .then(response => {
+        GetTodosApi(result => {
+          const { data, error } = result;
+          if (error) {
+            // Handle error
+            console.log('error')
+          }
+          if (data) {
             this.setState(
                 (state, props) => {
-                  return { todos: response.data };
+                  return { todos: data };
             });
-          })
-          .catch(error => {
-            console.log(error);
-          })
+          }
+      });
     }
+    // getTodos() {
+    //       axios.get('https://5cea41c50c871100140bf437.mockapi.io/api/v1/todos')
+    //       .then(response => {
+    //         this.setState(
+    //             (state, props) => {
+    //               return { todos: response.data };
+    //         });
+    //       })
+    //       .catch(error => {
+    //         console.log(error);
+    //       })
+    // }
 
     getTodo(id, todoId, userId, title, archived, completed, dueDate){
         this.setState(
@@ -55,78 +74,151 @@ class Home extends Component {
             };
         });
     }
-    onComplete(id, todoId, userId, title, archived, dueDate){
-        axios.put(`https://5cea41c50c871100140bf437.mockapi.io/api/v1/todos/${todoId}`, {
-            completed: true
-          })
-        .then(response => {
-            let newArray = Object.assign([], this.state.todos); //creating copy of object
-            newArray[id]=({
-                id:`${todoId}`,
-                userId: userId,
-                title: title,
-                completed: true,
-                archived: archived,
-                dueDate:dueDate,
-            }); 
-            this.setState(
-                (state, props) => {
-                  return { 
-                      todos: newArray
-                };
-            });
-        let newNotification = Object.assign([], settings.notification);
-        newNotification.push({
-            id:`${todoId}`,
-            userId: userId,
-            title: title,
-            completed: true,
-            archived: archived,
-            dueDate:dueDate,
-        }); 
-        settings.notification = newNotification;
-        console.log(newNotification)
-        })
-        .catch(error => {
-        console.log(error);
-        })
+    completeTodo(id, todoId, userId, title, archived, dueDate){
+        CompleteTodoApi(todoId, result => {
+            const { data, error } = result;
+            if (error) {
+              // Handle error
+              console.log('error')
+            }
+            if (data) {
+                let newArray = Object.assign([], this.state.todos); //creating copy of object
+                newArray[id]=({
+                    id:`${todoId}`,
+                    userId: userId,
+                    title: title,
+                    completed: true,
+                    archived: archived,
+                    dueDate:dueDate,
+                }); 
+                this.setState(
+                    (state, props) => {
+                      return { 
+                          todos: newArray
+                    };
+                });
+                let newNotification = Object.assign([], settings.notification);
+                newNotification.push({
+                    id:`${todoId}`,
+                    userId: userId,
+                    title: title,
+                    completed: true,
+                    archived: archived,
+                    dueDate:dueDate,
+                }); 
+                settings.notification = newNotification;
+            }
+        });
     }
-    inComplete(id, todoId, userId, title, archived, dueDate){
-        axios.put(`https://5cea41c50c871100140bf437.mockapi.io/api/v1/todos/${todoId}`, {
-            completed: false
-          })
-        .then(response => {
-            let newArray = Object.assign([], this.state.todos); //creating copy of object
-            newArray[id]=({
-                id:`${todoId}`,
-                userId: userId,
-                title: title,
-                completed: false,
-                archived: archived,
-                dueDate:dueDate,
-            }); 
-            this.setState(
-                (state, props) => {
-                  return { 
-                      todos: newArray
-                };
-            });
-        let newNotification = Object.assign([], settings.notification);
-        newNotification.push({
-            id:`${todoId}`,
-            userId: userId,
-            title: title,
-            completed: true,
-            archived: archived,
-            dueDate:dueDate,
-        }); 
-        settings.notification = newNotification;
-        console.log(settings.notification.length)
-        })
-        .catch(error => {
-        console.log(error);
-        })
+    IncompleteTodo(id, todoId, userId, title, archived, dueDate){
+        IncompleteTodoApi(todoId, result => {
+            const { data, error } = result;
+            if (error) {
+              // Handle error
+              console.log('error')
+            }
+            if (data) {
+                let newArray = Object.assign([], this.state.todos); //creating copy of object
+                newArray[id]=({
+                    id:`${todoId}`,
+                    userId: userId,
+                    title: title,
+                    completed: false,
+                    archived: archived,
+                    dueDate:dueDate,
+                }); 
+                this.setState(
+                    (state, props) => {
+                      return { 
+                          todos: newArray
+                    };
+                });
+                let newNotification = Object.assign([], settings.notification);
+                newNotification.push({
+                    id:`${todoId}`,
+                    userId: userId,
+                    title: title,
+                    completed: false,
+                    archived: archived,
+                    dueDate:dueDate,
+                }); 
+                settings.notification = newNotification;
+            }
+        });
     }
+    // onComplete(id, todoId, userId, title, archived, dueDate){
+    //     axios.put(`https://5cea41c50c871100140bf437.mockapi.io/api/v1/todos/${todoId}`, {
+    //         completed: true
+    //       })
+    //     .then(response => {
+    //         let newArray = Object.assign([], this.state.todos); //creating copy of object
+    //         newArray[id]=({
+    //             id:`${todoId}`,
+    //             userId: userId,
+    //             title: title,
+    //             completed: true,
+    //             archived: archived,
+    //             dueDate:dueDate,
+    //         }); 
+    //         this.setState(
+    //             (state, props) => {
+    //               return { 
+    //                   todos: newArray
+    //             };
+    //         });
+    //     let newNotification = Object.assign([], settings.notification);
+    //     newNotification.push({
+    //         id:`${todoId}`,
+    //         userId: userId,
+    //         title: title,
+    //         completed: true,
+    //         archived: archived,
+    //         dueDate:dueDate,
+    //     }); 
+    //     settings.notification = newNotification;
+    //     console.log(newNotification)
+    //     })
+    //     .catch(error => {
+    //     console.log(error);
+    //     })
+    // }
+
+    // inComplete(id, todoId, userId, title, archived, dueDate){
+    //     axios.put(`https://5cea41c50c871100140bf437.mockapi.io/api/v1/todos/${todoId}`, {
+    //         completed: false
+    //       })
+    //     .then(response => {
+    //         let newArray = Object.assign([], this.state.todos); //creating copy of object
+    //         newArray[id]=({
+    //             id:`${todoId}`,
+    //             userId: userId,
+    //             title: title,
+    //             completed: false,
+    //             archived: archived,
+    //             dueDate:dueDate,
+    //         }); 
+    //         this.setState(
+    //             (state, props) => {
+    //               return { 
+    //                   todos: newArray
+    //             };
+    //         });
+    //     let newNotification = Object.assign([], settings.notification);
+    //     newNotification.push({
+    //         id:`${todoId}`,
+    //         userId: userId,
+    //         title: title,
+    //         completed: true,
+    //         archived: archived,
+    //         dueDate:dueDate,
+    //     }); 
+    //     settings.notification = newNotification;
+    //     console.log(settings.notification.length)
+    //     })
+    //     .catch(error => {
+    //     console.log(error);
+    //     })
+    // }
     onDelete(todoId){
         axios.delete(`https://5cea41c50c871100140bf437.mockapi.io/api/v1/todos/${todoId}`)
         .then(response => {
@@ -320,7 +412,7 @@ class Home extends Component {
                                                 <div className="row">
                                                     <div className="col col-lg-1">
                                                         <input onClick={() => 
-                                                            this.onComplete(id, todo.id, todo.userId, todo.title, todo.archived, todo.dueDate)} type="checkbox" name="complete"/>
+                                                            this.completeTodo(id, todo.id, todo.userId, todo.title, todo.archived, todo.dueDate)} type="checkbox" name="complete"/>
                                                     </div>
                                                     <div className="col-lg-8 todo-text">
                                                     <p>{todo.title} <DateBadge currentDate={currentDate} startDate={todo.startDate} endDate={todo.dueDate}/></p>
@@ -356,7 +448,7 @@ class Home extends Component {
                                             <div className="row">
                                                 <div className="col col-lg-1">
                                                 <input onClick={() => 
-                                                            this.inComplete(id, todo.id, todo.userId, todo.title, todo.archived, todo.dueDate)} type="checkbox" data-toggle="tooltip" data-placement="top" title="Not Done" name="incomplete" defaultChecked={true}/>
+                                                            this.IncompleteTodo(id, todo.id, todo.userId, todo.title, todo.archived, todo.dueDate)} type="checkbox" data-toggle="tooltip" data-placement="top" title="Not Done" name="incomplete" defaultChecked={true}/>
                                                 </div>
                                                 <div className="col-lg-8 todo-text">
                                                 <p>{todo.title} <DateBadge currentDate={currentDate} startDate={todo.startDate} endDate={todo.dueDate}/></p>
@@ -452,7 +544,10 @@ class Home extends Component {
                                   return { title: '' };
                             })
                         }} type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button onClick={this.onEdit.bind(this)}  type="button" className="btn btn-primary">Save changes</button>
+                            <button onClick={() => {
+                                this.onEdit()
+                                this.onShowModal()
+                            }}type="button" className="btn btn-primary">Save changes</button>
                         </div>
                         </div>
                     </div>
